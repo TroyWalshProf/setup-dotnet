@@ -18,11 +18,18 @@ jobs:
 
     - id: keydb
       uses: pozetroninc/github-action-get-latest-release@master
-
-
+      with:
+        repository: TroyWalshProf/setup-dotnet
 
     - name: "Print result"
       run: |
         echo "id: ${{ steps.keydb.outputs.release}}"
         echo "name: ${{ steps.keydb.outputs.release }}"
         echo "tag_name: ${{ steps.keydb.outputs }}"
+        
+    - name: Lint with PSScriptAnalyzer
+      shell: pwsh
+      run: |
+
+            $endPoint = "https://api.github.com/repos/TroyWalshProf/setup-dotnet/releases"
+            Invoke-RestMethod -Uri $endPoint
