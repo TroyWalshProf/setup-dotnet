@@ -30,6 +30,7 @@ jobs:
     - name: Lint with PSScriptAnalyzer
       shell: pwsh
       run: |
-
+            $header = @{Authorization = 'Bearer ${{ secrets.GITHUB_TOKEN }}' }
             $endPoint = "https://api.github.com/repos/TroyWalshProf/setup-dotnet/releases"
-            Invoke-RestMethod -Uri $endPoint
+            Invoke-RestMethod -Uri $endPoint -Headers $header
+            #Invoke-RestMethod -Uri $endPoint -Headers 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
