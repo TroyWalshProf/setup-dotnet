@@ -32,5 +32,15 @@ jobs:
       run: |
             $header = @{Authorization = 'Bearer ${{ secrets.GITHUB_TOKEN }}' }
             $endPoint = "https://api.github.com/repos/TroyWalshProf/setup-dotnet/releases"
-            Invoke-RestMethod -Uri $endPoint -Headers $header
+            $info = Invoke-RestMethod -Uri $endPoint -Headers $header
+            $info
+            
+            $version = [version] $info.name.Trim("v")
+
+            $test=@'
+            {"id":1,"type":"Vsts","name":"Release","variables":{"MAQSVersion":{"isSecret":false,"value":"?????"}}}
+            '@
+
+            $test.Replace("?????", $version.ToString())
             #Invoke-RestMethod -Uri $endPoint -Headers 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
+
