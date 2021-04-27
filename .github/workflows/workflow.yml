@@ -6,7 +6,6 @@ on:
     branches:
       - master
       - releases/*
-
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
