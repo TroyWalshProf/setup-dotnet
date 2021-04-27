@@ -35,7 +35,7 @@ jobs:
             $info = Invoke-RestMethod -Uri $endPoint -Headers $header
             $info
             
-            $version = $info.name.Trim("v")
+            $version = $info.name[0].Trim("v")
 
             $test=@'
             {"id":1,"type":"Vsts","name":"Release","variables":{"MAQSVersion":{"isSecret":false,"value":"?????"}}}
