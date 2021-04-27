@@ -21,7 +21,6 @@ jobs:
       with:
         owner: TroyWalshProf
         repo: setup-dotnet
-        excludes: draft
 
 
     - name: "Print result"
