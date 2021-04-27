@@ -18,9 +18,7 @@ jobs:
 
     - id: keydb
       uses: pozetroninc/github-action-get-latest-release@master
-      with:
-        owner: TroyWalshProf
-        repo: setup-dotnet
+
 
 
     - name: "Print result"
