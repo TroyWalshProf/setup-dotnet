@@ -35,12 +35,12 @@ jobs:
             $info = Invoke-RestMethod -Uri $endPoint -Headers $header
             $info
             
-            $version = [version] $info.name.Trim("v")
+            $version = $info.name.Trim("v")
 
             $test=@'
             {"id":1,"type":"Vsts","name":"Release","variables":{"MAQSVersion":{"isSecret":false,"value":"?????"}}}
             '@
 
-            $test.Replace("?????", $version.ToString())
+            $test.Replace("?????", $version)
             #Invoke-RestMethod -Uri $endPoint -Headers 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}'
 
