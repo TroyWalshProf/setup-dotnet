@@ -39,7 +39,8 @@ jobs:
       shell: pwsh
       run: |
             $header = @{Authorization = 'Bearer ${{ secrets.GITHUB_TOKEN }}' }
-            $endPoint = "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases"
+            $endPoint = "https://api.github.com/repos/${{GITHUB_REPOSITORY}}/releases"
+            $endPoint
             $info = Invoke-RestMethod -Uri $endPoint -Headers $header
             $info
             
