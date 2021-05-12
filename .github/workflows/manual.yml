@@ -1,0 +1,39 @@
+# This is a basic workflow that is manually triggered
+
+name: Create New Release
+
+
+on:
+  release:
+    types: [published]
+    
+  workflow_dispatch:
+    inputs:
+      override:
+        description: 'Version Number'     
+        required: true
+        default: '0.0.0'
+      tags:
+        description: 'Manual'  
+
+jobs:
+  
+  MakeNewRelease:
+    runs-on: ubuntu-latest
+
+    steps:      
+    - name: Get version
+      run: |
+        if ("${{github.ref}}".trim() -notmatch '^refs/tags/v(\d+\.\d+\.\d+)$') {
+          $version = "::set-output name=RELEASE_NUMBER::${{ github.event.inputs.override }}"
+          echo $version
+          exit 1
+        }
+        $version = $matches[1]
+        $version = "::set-output name=RELEASE_NUMBER::$($version)"
+        echo $version
+
+        
+  # - name: Deploy to nuget
+   #   run: dotnet nuget push **/*.nupkg --api-key ${{ secrets.NUGET_DEPLOY_KEY }} --source https://api.nuget.org/v3/index.json
+
