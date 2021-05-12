@@ -51,7 +51,8 @@ jobs:
             $endPoint = "https://api.github.com/repos/TroyWalshProf/tmp/releases"
             $body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}", "name": "v${{ steps.Version.outputs.RELEASE_NUMBER }}", "draft": true}'
             Write-Host $body
-            Write-Host Invoke-RestMethod -Method 'Post' -Uri $endPoint -Headers $header -Body $body
+            $test = Invoke-RestMethod -Method 'Post' -Uri $endPoint -Headers $header -Body $body
+            Write-Host $test
 
 
         
