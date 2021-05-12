@@ -48,9 +48,9 @@ jobs:
       shell: pwsh
       run: |
             $header = @{Authorization = 'Bearer ${{ secrets.GITHUB_TOKEN }}' }
-            $endPoint = "https://api.github.com/repos/TroyWalshProf/setup-dotnet/releases"
-            #$body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}", "name": "v${{ steps.Version.outputs.RELEASE_NUMBER }}", "draft": true}'
-            $body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}"}'
+            $endPoint = "https://api.github.com/repos/TroyWalshProf/tmp/releases"
+            $body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}", "name": "v${{ steps.Version.outputs.RELEASE_NUMBER }}", "draft": true}'
+            #$body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}"}'
             Write-Host $body
             $test = Invoke-RestMethod -Method 'Post' -Uri $endPoint -Headers $header -Body $body
             Write-Host $test
