@@ -37,7 +37,7 @@ jobs:
           $version = "::set-output name=RELEASE_NUMBER::$($version)"
         }
         
-        echo $version
+        Write-Host $version
         
     - name: Display
       run: |
