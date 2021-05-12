@@ -43,6 +43,16 @@ jobs:
       run: |
         echo "Override ${{ github.event.inputs.override }}!"
         echo "Value ${{ steps.Version.outputs.RELEASE_NUMBER }}!"
+        
+    - name: GetVersion
+      shell: pwsh
+      run: |
+            $header = @{Authorization = 'Bearer ${{ secrets.GITHUB_TOKEN }}' }
+            $endPoint = "https://api.github.com/repos/TroyWalshProf/tmp/releases"
+            $body = '{"tag_name":"v${{ steps.Version.outputs.RELEASE_NUMBER }}", "name": "v${{ steps.Version.outputs.RELEASE_NUMBER }}", "draft": true}'
+            Write-Host $body
+            Write-Host Invoke-RestMethod -Method 'Post' -Uri $endPoint -Headers $header -Body $body
+
 
         
   # - name: Deploy to nuget
