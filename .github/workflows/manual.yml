@@ -23,6 +23,7 @@ jobs:
 
     steps:      
     - name: Get version
+      shell: pwsh
       run: |
         if ("${{github.ref}}".trim() -notmatch '^refs/tags/v(\d+\.\d+\.\d+)$') {
           $version = "::set-output name=RELEASE_NUMBER::${{ github.event.inputs.override }}"
