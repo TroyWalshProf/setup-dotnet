@@ -23,6 +23,7 @@ jobs:
 
     steps:      
     - name: Get version
+      id: Version
       shell: pwsh
       run: |
         if ("${{github.ref}}".trim() -notmatch '^refs/tags/v(\d+\.\d+\.\d+)$') {
@@ -30,9 +31,18 @@ jobs:
           echo $version
           exit
         }
-        $version = $matches[1]
-        $version = "::set-output name=RELEASE_NUMBER::$($version)"
+        else
+        {
+          $version = $matches[1]
+          $version = "::set-output name=RELEASE_NUMBER::$($version)"
+        }
+        
         echo $version
+        
+    - name: Display
+      run: |
+        echo "Override ${{ github.event.inputs.override }}!"
+        echo "Value ${{ steps.Version.outputs.RELEASE_NUMBER }}!"
 
         
   # - name: Deploy to nuget
