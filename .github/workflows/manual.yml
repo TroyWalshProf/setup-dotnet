@@ -71,9 +71,14 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          github.repos.updateRelease({
+          const result = await github.repos.getReleaseByTag({
             tag_name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
-            name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
+          
+          github.repos.updateRelease({
+            release_id: result.id,
             "draft": false,
             owner: context.repo.owner,
             repo: context.repo.repo
