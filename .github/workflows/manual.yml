@@ -77,17 +77,18 @@ jobs:
           })
           
           var id = "NA"
-          for(var key in result){ 
-              if(result[key].tag_name == "v${{ steps.Version.outputs.RELEASE_NUMBER }}")
+          var data = result.data
+          for(var key in data){ 
+              if(data[key].tag_name == "v${{ steps.Version.outputs.RELEASE_NUMBER }}")
               {
-                  id = result[key].id
+                  id = data[key].id
                   break;
               }
           }
 
           console.log(id);
           console.log("LOOPEND");
-          console.log(result)
+          console.log(result.data)
           
           github.repos.updateRelease({
             release_id: id,
