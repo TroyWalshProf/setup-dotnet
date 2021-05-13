@@ -62,6 +62,19 @@ jobs:
           github.repos.createRelease({
             tag_name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
             name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
+            "draft": true,
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
+
+    - uses: actions/github-script@v4
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.repos.updateRelease({
+            tag_name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
+            name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
+            "draft": false,
             owner: context.repo.owner,
             repo: context.repo.repo
           })
