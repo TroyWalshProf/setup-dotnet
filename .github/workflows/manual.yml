@@ -76,10 +76,21 @@ jobs:
             repo: context.repo.repo
           })
           
+          var id = "NA"
+          for(var key in result){ 
+              if(result[key].tag_name == "value2")
+              {
+                  id= result[key].id
+                  break;
+              }
+          }
+
+          console.log(id);
+          console.log("LOOPEND");
           console.log(result)
           
           github.repos.updateRelease({
-            release_id: result.id,
+            release_id: id,
             "draft": false,
             owner: context.repo.owner,
             repo: context.repo.repo
