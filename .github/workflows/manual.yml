@@ -62,7 +62,6 @@ jobs:
           github.repos.createRelease({
             tag_name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
             name: "v${{ steps.Version.outputs.RELEASE_NUMBER }}",
-            draft: true,
             owner: context.repo.owner,
             repo: context.repo.repo
           })
