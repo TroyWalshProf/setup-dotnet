@@ -13,8 +13,8 @@ on:
         description: 'Version Number'     
         required: true
         default: '0.0.0'
-      tags:
-        description: 'Manual'  
+#      tags:
+#        description: 'Manual'  
 
 jobs:
   
