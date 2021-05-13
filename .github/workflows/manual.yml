@@ -78,9 +78,9 @@ jobs:
           
           var id = "NA"
           for(var key in result){ 
-              if(result[key].tag_name == "value2")
+              if(result[key].tag_name == "v${{ steps.Version.outputs.RELEASE_NUMBER }}")
               {
-                  id= result[key].id
+                  id = result[key].id
                   break;
               }
           }
